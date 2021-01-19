@@ -2,7 +2,7 @@
 
 
 Describe Solution:
-My first steps in bubilding any solution is to set up Authorization and Authentication using jwt.
+My first steps in building any solution is to set up Authorization and Authentication using jwt.
 
 Then set up a logging mechanism to help understand what is happening in the application
 my goto for this is Serilog.
