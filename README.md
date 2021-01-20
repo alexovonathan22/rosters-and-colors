@@ -9,11 +9,12 @@ my goto for this is Serilog.
 
 Then I break up my application to have different aspects to it:
 
-API project: This is the entry point for client applications.
-Core project: Bears the responsibilty managing all business logic and data access processing
-Test project: This is bears the responsibility of handling the unit tests of the application majorly 
+#API project: This is the entry point for client applications.
+#Core project: Bears the responsibilty managing all business logic and data access processing.
+#Test project: This is bears the responsibility of handling the unit tests of the application majorly 
               the endpoints implemented.
-Then to solve this problem i will create the endpoints below.
+              
+#Then to solve this problem i will create the endpoints below.
 
               
 Endpoints
