@@ -35,7 +35,7 @@ Members can only get all rosters and colors.
 To Run the Application:
 Clone the Project on your machine and restore all dependencies.
 Then run the application a Swagger UI will pop up on your browser then you can test the app as a Church admin or Member.
-To test as admin use { "username": "adminovo", "password": "123456" } to login obtain a token and pass that
+To test as admin use { "username": "adminovo", "password": "01234Admin" } to login obtain a token and pass that
 token to the authorize button on the top right of the UI.
 
 Expected Error Codes:
