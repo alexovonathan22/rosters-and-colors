@@ -22,12 +22,6 @@ namespace Roster.Api.Controllers
         {
             _rosterservice = rosterservice;
         }
-        // GET: api/<RosterController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
 
         /// <summary>
         /// Endpoint to get all available colors.
@@ -50,12 +44,6 @@ namespace Roster.Api.Controllers
             response.Result = entity;
 
             return BadRequest(response);
-        }
-        // GET api/<RosterController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
         }
 
         // POST api/<RosterController>/AuthorizedMember
