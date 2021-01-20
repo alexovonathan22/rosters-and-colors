@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Roster.Api</name>
+    </assembly>
+    <members>
+        <member name="M:Roster.Api.Controllers.AuthController.Login(Roster.Core.ApiModels.LoginModel)">
+            <summary>
+            This Endpoint logs users in to the app.
+            </summary>
+            <remarks>
+            Use as sample User login
+            {
+               "username": "OvoDGreat",
+               "password": "123456"
+            }
+            </remarks>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Roster.Api.Controllers.AuthController.Register(Roster.Core.ApiModels.SignUpModel)">
+             <summary>
+             This Endpoint creates new users.
+             </summary>
+             <remarks>
+             Use as sample User
+             {
+                 
+                "username": "OvoDGreat",
+                "email": "OvoDGreat@gmail.com",
+                "password": "123456"
+            
+             }
+             Note When you run the application for first time, admin is created
+             with username=adminovo, password=01234Admin
+             </remarks>
+             <param name="userdto"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Roster.Api.Controllers.RosterController.GetColors">
+            <summary>
+            Endpoint to get all available colors.
+            TO CREATE A ROSTER THE USER MUST FOR CALL THE GETALLCOLORS ENDPOINT, IF THERE WAS A CLIENT APP IT WOULD BE A DROPDOWN
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Roster.Api.Controllers.RosterController.Post(Roster.Core.ApiModels.RosterDetails)">
+            <summary>
+            This Endpoint helps to create a roster, it is created by a Church Admin.
+            Memebers cannot create.
+            Below is the payload to pass.
+            TO CREATE A ROSTER THE USER MUST FOR CALL THE GetColors() ENDPOINT, IF THERE WAS A CLIENT APP IT WOULD BE A DROPDOWN
+            </summary>
+            <remarks>
+            {
+                rosterName: "North",
+                color: "blue Ivy"
+            }
+            </remarks>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Roster.Api.Controllers.RosterController.Delete(Roster.Core.ApiModels.DeleteModel)">
+            <summary>
+            This endpoint carries out a delete operation for both color and roster.
+            (1.) if Color option is set it will only delete the color of that roster.
+            (2.) if Roster option is set it will delete both the roster and color.
+            if none is set the endpoint will do (2.)
+            Below is the payload to pass.
+            </summary>
+            
+            <remarks>
+            {
+                id: 1,
+                RemoveColor: 0,
+                RemoveRoster: 1
+            }
+            </remarks>
+            <param name="model"></param>
+        </member>
+    </members>
+</doc>
