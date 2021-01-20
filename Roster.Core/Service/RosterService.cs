@@ -81,17 +81,18 @@ namespace Roster.Core.Service
             {
                 return (response: null, message: $"An error occured. Check details passed.");
             }
-            //Check if the roster to change color exists,
-            var roster = await _rosrepo.FirstOrDefault(t=>t.Name==model.RosterName);
-            if (roster == null) return (response: null, message: $"Rsoter doesnt exist. So color cant be added.");
             //CHeck if color is approved color, if true go to next line
-            var toCapsColor = model.Color;
+            var toCapsColor = model.Color.ToUpperInvariant();
             var hexColor = configuration[$"SupportedColors:{toCapsColor}"];
             if (string.IsNullOrEmpty(hexColor)) return (response: null, message: $"Enter a valid color. call getcolors endpoint.");
-
+            //Check if the roster to change color exists, and that color is unique
+            var roster = await _rosrepo.FirstOrDefault(t=>t.Name==model.RosterName || t.Color==toCapsColor);
+            if (roster == null) return (response: null, message: $"Roster doesnt exist. So color cant be added.");
+            if (roster.Color == toCapsColor) return (response:null, message:$"The color exists for another roster. enter a different color.");
             try
             {
-                roster.Color = model.Color;
+                roster.Color = toCapsColor;
+                //Before Updating check that color doesnt es=xist for another roster.
                 await _rosrepo.Update(roster);
             }catch(DbUpdateException e)
             {
@@ -123,10 +124,15 @@ namespace Roster.Core.Service
                 return (response: null, message: $"You are not an admin.");
             }
 
-            var toCapsColor = model.Color;
+            var toCapsColor = model.Color.ToUpperInvariant();
             var hexColor = configuration[$"SupportedColors:{toCapsColor}"];
             if (string.IsNullOrEmpty(hexColor)) return (response: null, message: $"Enter a valid color. call getcolors endpoint.");
-            var roster = new RosterDetails().PopulateRoster(model);
+
+            //Check if the roster to change color exists, and that color is unique
+            var roster = await _rosrepo.FirstOrDefault(t => t.Color == toCapsColor);
+            if (roster != null) return (response:null, message:$"Couldnt create roster because color exists for another roster.");
+
+            roster = new RosterDetails().PopulateRoster(model, toCapsColor);
 
             // Go on and create the roster.
             var newroster = await _rosrepo.Insert(roster);

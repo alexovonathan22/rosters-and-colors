@@ -11,13 +11,13 @@ namespace Roster.Core.ApiModels
         public string RosterName { get; set; }
         public string Color { get; set; }
 
-        internal Rosters PopulateRoster(RosterDetails model)
+        internal Rosters PopulateRoster(RosterDetails model, string ColorInCaps)
         {
             
             if (model == null) return null;
             var roster = new Rosters();
             roster.Name = model.RosterName;
-            roster.Color = model.Color;
+            roster.Color = ColorInCaps;
             roster.CreatedAt = DateTime.Now;
             roster.ModifiedAt = DateTime.Now;
 
